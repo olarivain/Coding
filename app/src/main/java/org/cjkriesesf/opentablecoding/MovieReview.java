@@ -22,4 +22,6 @@ class MovieReview {
     public String publicationDate;
 
     public Multimedia multimedia;
+
+    public Link link;
 }

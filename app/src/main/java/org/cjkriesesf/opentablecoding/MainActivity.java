@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ReviewListAdapter adapter;
     private CompositeDisposable compositeDisposable;
-
+    private boolean hasMore;
+    private ArrayList<MovieReview> reviewList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,12 @@ public class MainActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.scrollToPosition(0);
         recyclerViewList.setLayoutManager(layoutManager);
-        adapter = new ReviewListAdapter(this);
+        adapter = new ReviewListAdapter(this, new ReviewListAdapter.LoadListener() {
+            @Override
+            public void load() {
+                getData();
+            }
+        });
         recyclerViewList.setAdapter(adapter);
         compositeDisposable = new CompositeDisposable();
     }
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Timber.d("onResume");
         getData();
     }
 
@@ -51,25 +58,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        Timber.d("onPause");
     }
 
     private void getData() {
-
         MovieReviewService service = MovieReviewService.retrofit.create(MovieReviewService.class);
 
-        Observable<MovieReviewResult> observable = service.movieReviewList();
-
+        Observable<MovieReviewResult> observable = service.movieReviewList(reviewList.size());
         compositeDisposable.add(observable
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError));
-
     }
 
     private void handleResponse(MovieReviewResult result) {
         Timber.d("returned %d items", result.num_results);
-        adapter.setList(result.results);
+        reviewList.addAll(result.results);
+        Timber.d("list has now %d items", reviewList.size());
+
+        adapter.setList(reviewList);
         adapter.notifyDataSetChanged();
+        hasMore = result.has_more;
     }
 
     private void handleError(Throwable error) {

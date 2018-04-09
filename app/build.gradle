@@ -12,7 +12,6 @@ android {
         buildConfigField "String", "SERVER_URL", '"http://api.nytimes.com"'
         buildConfigField "String", "SERVICE_API_KEY", '"b75da00e12d54774a2d362adddcc9bef"'
 
-
         //baseUrl "http://api.nytimes.com/svc/movies/v2/reviews/dvd-picks.json?order=by-date&api-key=b75da00e12d54774a2d362adddcc9bef"
     }
     buildTypes {
@@ -20,6 +19,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 
@@ -34,7 +37,6 @@ ext.junitVersion = "4.12"
 ext.testRunnerVersion = "1.0.1"
 ext.retrofitVersion = "2.4.0"
 ext.rxJavaVersion = "2.0.1"
-ext.retrofitRxJavaVersion ="1.0.0"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -51,11 +53,11 @@ dependencies {
     //Network
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofitRxJavaVersion"
-
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
     //Image loading
     implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
     //Resource resolution with ButterKnife

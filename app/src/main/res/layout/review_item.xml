@@ -69,6 +69,7 @@
             android:id="@+id/summary_short"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TwoLineStyle"
             android:ellipsize="end"
             android:maxLines="2"
             tools:text="Science fiction phenomenon is brought to the big screen with much fanfare." />

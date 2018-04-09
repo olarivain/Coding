@@ -13,8 +13,20 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="headlineStyle" parent="TextAppearance.AppCompat">>
+    <style name="TwoLineStyle" parent="TextAppearance.AppCompat">>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="headlineStyle" parent="TwoLineStyle">>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_gravity">center</item>
     </style>
+
+    <style name="ThemeNoTitleDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowMinWidthMajor">96%</item>
+        <item name="android:windowMinWidthMinor">96%</item>
+    </style>
+
 </resources>
