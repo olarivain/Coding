@@ -64,7 +64,7 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewViewHolder>{
 
         holder.view.setOnClickListener(v -> {
             Timber.d("clicked view");
-            if (review.link != null && review.link.link_type == Link.LinkType.urlType.name()) {
+            if (review.link != null) {
                 Intent showDetails = new Intent(context, ReviewDetailActivity.class);
                 showDetails.putExtra(ReviewDetailActivity.REVIEW_URL, review.link.url);
                 context.startActivity(showDetails);

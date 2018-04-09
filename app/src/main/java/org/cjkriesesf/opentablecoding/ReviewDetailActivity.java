@@ -20,7 +20,6 @@ public class ReviewDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_reivew_detail);
-        final View progressBar = findViewById(R.id.progressBar);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
