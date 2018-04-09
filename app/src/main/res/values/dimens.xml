@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="review_margin">8dp</dimen>
+    <dimen name="review_card_margin">4dp</dimen>
+    <dimen name="review_content_margin">4dp</dimen>
     <dimen name="review_text_margin">6dp</dimen>
 </resources>

@@ -33,18 +33,11 @@ public class ReviewDetailActivity extends AppCompatActivity {
             myWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
             myWebView.loadUrl(url);
 
-            myWebView.setPictureListener(new WebView.PictureListener() {
-                @Override
-                public void onNewPicture(WebView view, @Nullable Picture picture) {
-
-                }
-            });
             myWebView.setWebViewClient(new WebViewClient() {
                 public void onPageFinished(WebView view, String url) {
                     myWebView.setVisibility(View.VISIBLE);
                 }
             });
-            myWebView.loadUrl(url);
         } else {
             Timber.e("No url passed in");
         }

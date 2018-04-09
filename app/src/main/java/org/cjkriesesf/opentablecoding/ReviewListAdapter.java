@@ -14,6 +14,10 @@ import android.webkit.WebViewClient;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import timber.log.Timber;
@@ -56,16 +60,17 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewViewHolder>{
         holder.byline.setText(review.byline);
         holder.headline.setText(review.headline);
         holder.summaryShort.setText(review.summaryShort);
-        holder.publicationDate.setText(review.publicationDate);
-
-
-
+        holder.publicationDate.setText(formatDate(review.publicationDate));
 
         holder.view.setOnClickListener(v -> {
             Timber.d("clicked view");
-            Intent showDetails = new Intent(context, ReviewDetailActivity.class);
-            showDetails.putExtra(ReviewDetailActivity.REVIEW_URL, review.link.url);
-            context.startActivity(showDetails);
+            if (review.link != null && review.link.link_type == Link.LinkType.urlType.name()) {
+                Intent showDetails = new Intent(context, ReviewDetailActivity.class);
+                showDetails.putExtra(ReviewDetailActivity.REVIEW_URL, review.link.url);
+                context.startActivity(showDetails);
+            } else {
+                Timber.e("Missing link or unsupported link type");
+            }
         });
         Glide
             .with(context)
@@ -75,6 +80,21 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewViewHolder>{
                     .centerCrop()
                     .placeholder(R.drawable.ic_launcher_foreground))
             .into(holder.multimedia);
+    }
+
+    private String formatDate(String publicationDate) {
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = fmt.parse(publicationDate);
+        } catch (ParseException e) {
+            Timber.d("Could not parse publication date");
+            e.printStackTrace();
+            return "";
+        }
+
+        SimpleDateFormat fmtOut = new SimpleDateFormat("MMM dd yyyy");
+        return fmtOut.format(date);
     }
 
 
