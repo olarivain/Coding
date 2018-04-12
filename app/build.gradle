@@ -71,7 +71,7 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:1.1.1"
 
     testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
+//    androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
+//    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+//    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
 }
