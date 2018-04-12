@@ -97,7 +97,6 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewViewHolder>{
         return fmtOut.format(date);
     }
 
-
     @Override
     public int getItemCount() {
         return reviewList == null ? 0 : reviewList.size();

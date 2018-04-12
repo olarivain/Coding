@@ -12,7 +12,6 @@ android {
         buildConfigField "String", "SERVER_URL", '"http://api.nytimes.com"'
         buildConfigField "String", "SERVICE_API_KEY", '"b75da00e12d54774a2d362adddcc9bef"'
 
-        //baseUrl "http://api.nytimes.com/svc/movies/v2/reviews/dvd-picks.json?order=by-date&api-key=b75da00e12d54774a2d362adddcc9bef"
     }
     buildTypes {
         release {
@@ -68,8 +67,11 @@ dependencies {
     //Logging
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
+    //Android lifecycle
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
-    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
 }

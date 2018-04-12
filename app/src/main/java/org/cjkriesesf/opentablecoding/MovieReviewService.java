@@ -20,10 +20,7 @@ interface MovieReviewService {
             .build();
 
     public static final String SERVICE_PATH  = "svc/movies/v2/reviews/dvd-picks.json";
-/*
-@GET("group/{id}/users")
-Call<List<User>> groupList(@Path("id") int groupId);
- */
+
     @GET(SERVICE_PATH + "?order=by-date&api-key=" + BuildConfig.SERVICE_API_KEY)
     Observable<MovieReviewResult> movieReviewList(@Query("offset") int offset);
 }
